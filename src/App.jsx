@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import MainPage from './pages/MainPage/MainPage';
-import UserPage from './pages/UserPage/UserPage';
+// import UserPage from './pages/UserPage/UserPage';
 import Header from './components/Header/Header';
 
 import './App.css';
@@ -14,7 +14,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/users/:id" element={<UserPage />} />
+        {/* <Route path="/users/:id" element={<UserPage />} /> */}
       </Routes>
      
     </BrowserRouter>
