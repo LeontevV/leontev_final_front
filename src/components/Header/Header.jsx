@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { CardMedia } from '@mui/material';
-import News2 from '../../assets/news2.png';
+import news1 from '../../assets/news1.png';
 
 export default function ButtonAppBar() {
   return (
@@ -14,7 +14,7 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <CardMedia
-            image={News2}
+            image={news1}
           />
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             News Site

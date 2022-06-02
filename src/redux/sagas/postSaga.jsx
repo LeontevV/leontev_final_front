@@ -1,8 +1,8 @@
 import {
   takeEvery,
-  // call,
   put,
 } from 'redux-saga/effects';
+
 import api from '../../api/api';
 import * as actionTypes from '../constants';
 import { failedPosts, receivedPosts } from '../action';
