@@ -1,10 +1,13 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
-export default function DisableElevation() {
+export default function BasicButtons() {
   return (
-    <Button variant="contained" color="primary" disableElevation>
-      Disable elevation
-    </Button>
+    <Stack spacing={2} direction="row">
+      <Button variant="text">Text</Button>
+      <Button variant="contained">Contained</Button>
+      <Button variant="outlined">Outlined</Button>
+    </Stack>
   );
 }

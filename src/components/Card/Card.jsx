@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { string } from 'prop-types';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -15,7 +16,7 @@ export default function MediaCard({ title, description, tag }) {
       <CardMedia
         component="img"
         height="140"
-        image={ postImage }
+        image={postImage}
       />
       <CardContent>
         <Typography gutterBottom variant="h4" component="div">
@@ -35,3 +36,13 @@ export default function MediaCard({ title, description, tag }) {
     </Card>
   );
 }
+MediaCard.propTypes = {
+  title: string,
+  description: string,
+  tag: string,
+};
+MediaCard.defaultProps = {
+  title: '',
+  tag: '',
+  description: '',
+};

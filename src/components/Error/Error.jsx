@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { string } from 'prop-types';
+
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
@@ -9,7 +11,17 @@ export default function Notification({ severity, title, text }) {
       <Alert severity={severity}>
         <AlertTitle>{title}</AlertTitle>
         { text }
-      </Alert>      
+      </Alert>
     </Stack>
   );
 }
+Notification.propTypes = {
+  severity: string,
+  title: string,
+  text: string,
+};
+Notification.defaultProps = {
+  severity: '',
+  title: '',
+  text: '',
+};
