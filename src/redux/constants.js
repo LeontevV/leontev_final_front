@@ -1,3 +1,7 @@
 export const POSTS_REQUESTED = 'POSTS_REQUESTED';
 export const POSTS_RECEIVED = 'POSTS_RECEIVED';
 export const POSTS_FAILED = 'POSTS_FAILED';
+
+export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const LOGIN_MODAL = 'LOGIN_MODAL';
+export const SIGN_UP_MODAL = 'SIGN_UP_MODAL';
