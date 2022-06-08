@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo } from 'react';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,9 +7,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import { CardMedia } from '@mui/material';
-import news from '../../assets/news1.png';
+import news from '../../assets/news.png';
 
-export default function ButtonAppBar() {
+function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -27,3 +27,5 @@ export default function ButtonAppBar() {
     </Box>
   );
 }
+
+export default memo(ButtonAppBar);
