@@ -1,7 +1,7 @@
 import {
-  POSTS_REQUESTED,
-  POSTS_RECEIVED,
-  POSTS_FAILED,
+  GET_POST_REQUEST,
+  GET_POST_SUCCESS,
+  GET_POST_FAILED,
 } from '../constants';
 
 const initialState = {
@@ -12,17 +12,26 @@ const initialState = {
 
 export default function postsReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case POSTS_REQUESTED:
+    case GET_POST_REQUEST:
       return {
-        ...state, isFetching: true, posts: [], error: null,
+        ...state,
+        isFetching: true,
+        posts: [],
+        error: null,
       };
-    case POSTS_RECEIVED:
+    case GET_POST_SUCCESS:
       return {
-        ...state, isFetching: false, posts: action.payload, error: null,
+        ...state,
+        isFetching: false,
+        posts: action.payload,
+        error: null,
       };
-    case POSTS_FAILED:
+    case GET_POST_FAILED:
       return {
-        ...state, isFetching: false, posts: [], error: action.error,
+        ...state,
+        isFetching: false,
+        posts: [],
+        error: action.error,
       };
     default: return state;
   }

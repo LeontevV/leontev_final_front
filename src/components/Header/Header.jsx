@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 
 import AppBar from '@mui/material/AppBar';
@@ -11,7 +11,7 @@ import { CardMedia } from '@mui/material';
 import { toggleModal } from '../../redux/action';
 import news from '../../assets/news.png';
 
-export default function ButtonAppBar() {
+function ButtonAppBar() {
   const dispatch = useDispatch();
 
   const openModal = (type) => {
@@ -35,3 +35,5 @@ export default function ButtonAppBar() {
     </Box>
   );
 }
+
+export default memo(ButtonAppBar);

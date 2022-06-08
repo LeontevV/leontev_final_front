@@ -1,15 +1,16 @@
 import {
-  takeEvery,
+  takeLatest,
   put,
+  call,
 } from 'redux-saga/effects';
 
-import api from '../../api/api';
 import * as actionTypes from '../constants';
 import { failedPosts, receivedPosts } from '../action';
+import getPostsRequest from '../../api/getPostsRequest';
 
 function* getPostSaga() {
   try {
-    const { data: payload } = yield api.get('/posts');
+    const { data: payload } = yield call(getPostsRequest);
     yield put(receivedPosts(payload));
   } catch (err) {
     yield put(failedPosts(err.message));
@@ -17,5 +18,5 @@ function* getPostSaga() {
 }
 
 export default function* watcherSaga() {
-  yield takeEvery(actionTypes.POSTS_REQUESTED, getPostSaga);
+  yield takeLatest(actionTypes.GET_POST_REQUEST, getPostSaga);
 }

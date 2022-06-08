@@ -1,14 +1,14 @@
 import * as actionTypes from '../constants';
 
 export const getPosts = () => ({
-  type: actionTypes.POSTS_REQUESTED,
+  type: actionTypes.GET_POST_REQUEST,
 });
 export const receivedPosts = (payload) => ({
-  type: actionTypes.POSTS_RECEIVED,
+  type: actionTypes.GET_POST_SUCCESS,
   payload,
 });
 export const failedPosts = (error) => ({
-  type: actionTypes.POSTS_FAILED,
+  type: actionTypes.GET_POST_FAILED,
   error,
 });
 export const toggleModal = (payload) => ({

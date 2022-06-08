@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo } from 'react';
 import { string } from 'prop-types';
 
 import Card from '@mui/material/Card';
@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 
 import postImage from '../../assets/images.png';
 
-export default function MediaCard({ title, description, tag }) {
+function MediaCard({ title, description, tag }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -46,3 +46,5 @@ MediaCard.defaultProps = {
   tag: '',
   description: '',
 };
+
+export default memo(MediaCard);
