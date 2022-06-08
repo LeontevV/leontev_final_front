@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CircularProgress from '@mui/material/CircularProgress';
@@ -16,11 +16,9 @@ function Posts() {
     dispatch(getPosts());
   }, [dispatch]);
 
-  const {
-    posts,
-    error,
-    isFetching,
-  } = useSelector((state) => state.posts);
+  const posts = useSelector((state) => state.posts.posts);
+  const error = useSelector((state) => state.posts.error);
+  const isFetching = useSelector((state) => state.posts.isFetching);
 
   if (isFetching) {
     return <CircularProgress className="loading" />;
@@ -58,4 +56,4 @@ function Posts() {
   );
 }
 
-export default Posts;
+export default memo(Posts);

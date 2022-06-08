@@ -1,17 +1,16 @@
 import {
   takeLatest,
   put,
-  // call,
+  call,
 } from 'redux-saga/effects';
 
-// import api from '../../api/api';
 import * as actionTypes from '../constants';
 import { failedPosts, receivedPosts } from '../action';
 import getPostsRequest from '../../api/getPostsRequest';
 
 function* getPostSaga() {
   try {
-    const { data: payload } = yield getPostsRequest();
+    const { data: payload } = yield call(getPostsRequest);
     yield put(receivedPosts(payload));
   } catch (err) {
     yield put(failedPosts(err.message));
