@@ -1,38 +1,50 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { memo } from 'react';
 import { Formik, Field, Form } from 'formik';
 import { useSelector } from 'react-redux';
+
+import { validateAuthorization, validateRegistration } from '../../Helpers/AuthValidation';
+import './LoginForm.css';
 
 function LoginForm() {
   const modalType = useSelector((state) => state.auth.modalType);
 
   const isLogin = modalType === 'login';
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+  };
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div className="auth">
       <Formik
         initialValues={{
           name: '',
           email: '',
           password: '',
         }}
+        validateOnBlur
         onSubmit={onSubmit}
+        validationSchema={validateRegistration}
       >
         <Form>
-          {/* <label htmlFor="name">First Name</label> */}
-          <Field id="name" name="name" placeholder="Jane" />
-          {/* <label htmlFor="email">Last Name</label> */}
-          <Field id="password" name="password" placeholder="Doe" />
+          {!isLogin
+          && (
+          <>
+            <label>Name</label>
+            <Field id="name" name="name" placeholder="" />
+          </>
+          )}
+          <label htmlFor="password">Password</label>
+          <Field id="password" name="password" placeholder="" />
 
-          {/* <label htmlFor="password">Email</label> */}
+          <label htmlFor="email">Email</label>
           <Field
             id="email"
             name="email"
-            placeholder="jane@acme.com"
+            placeholder=""
             type="email"
           />
-          <button type="submit">Submit</button>
+          {errors.email && <div id="feedback">{errors.email}</div>}
+          <button className="submit" type="submit">Submit</button>
         </Form>
       </Formik>
     </div>

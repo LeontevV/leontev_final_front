@@ -1,0 +1,11 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+.submit {
+  width: 100px;
+  margin-top: 20px;
+}
+label {
+  padding-top: 20px;
+}
