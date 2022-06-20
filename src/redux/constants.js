@@ -5,3 +5,5 @@ export const GET_POST_FAILED = 'GET_POST_FAILED';
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 export const LOGIN_MODAL = 'LOGIN_MODAL';
 export const SIGN_UP_MODAL = 'SIGN_UP_MODAL';
+
+export const GET_RECEIVED_USER = 'GET_RECEIVED_USER';

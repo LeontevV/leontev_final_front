@@ -19,7 +19,12 @@ export const loginModal = (payload) => ({
   type: actionTypes.LOGIN_MODAL,
   payload,
 });
-export const signInModal = (payload) => ({
+
+export const receivedAuth = (payload) => ({
+  type: actionTypes.GET_RECEIVED_USER,
+  payload,
+});
+export const signUpModal = (payload) => ({
   type: actionTypes.SIGN_UP_MODAL,
   payload,
 });
