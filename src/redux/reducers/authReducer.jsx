@@ -3,12 +3,14 @@ import {
   LOGIN_MODAL,
   SIGN_UP_MODAL,
   GET_RECEIVED_USER,
+  GET_USER_FAILED,
 } from '../constants';
 
 const initialState = {
   modalType: '',
   modalIsOpen: false,
   user: {},
+  error: null,
 };
 
 export default function authReducer(state = initialState, action = {}) {
@@ -33,6 +35,12 @@ export default function authReducer(state = initialState, action = {}) {
       return {
         ...state,
         user: state.payload,
+        modalIsOpen: false,
+      };
+    case GET_USER_FAILED:
+      return {
+        ...state,
+        error: action.payload,
       };
     default: return state;
   }

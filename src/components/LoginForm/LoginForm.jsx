@@ -4,25 +4,30 @@ import { Formik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import * as yup from 'yup';
 
+import Button from '@mui/material/Button';
 import './LoginForm.css';
-import { loginModal } from '../../redux/action';
+import { loginModal, signUpModal, toggleModal } from '../../redux/action';
+
+import Notification from '../Error/Error';
 
 function LoginForm() {
   const dispatch = useDispatch();
   const modalType = useSelector((state) => state.auth.modalType);
+  const error = useSelector((state) => state.auth.error);
   const validationSchema = yup.object().shape({
     name: yup.string().typeError('Must be string'),
     email: yup.string().email('Enter valid email').required('Necessarily'),
     password: yup.string().typeError('Must be string').required('Necessarily'),
     confirmPassword: yup.string().oneOf([yup.ref('password')], 'Please repeat password'),
-
   });
   const isLogin = modalType === 'login';
 
-  const onSubmit = (value) => {
-    console.log(value);
-    dispatch(loginModal(value));
+  const handleClose = () => {
+    dispatch(toggleModal({ status: false }));
   };
+
+  const onSubmit = (value) => (isLogin
+    ? dispatch(loginModal(value)) : dispatch(signUpModal(value)));
   return (
     <div className="auth">
       <Formik
@@ -57,10 +62,8 @@ function LoginForm() {
                   {errors.name}
                 </div>
                 ) }
-
               </>
             )}
-
             <label htmlFor="name">Email</label>
             <p>
               <input
@@ -111,15 +114,22 @@ function LoginForm() {
                 )}
               </>
             ) }
-            <button
+            <Button
               className="submit"
               disabled={!isValid && !dirty}
               onClick={handleSubmit}
               type="submit"
             >
               Submit
-
-            </button>
+            </Button>
+            <Button onClick={handleClose}>Cancel</Button>
+            {error && (
+            <Notification
+              severity="error"
+              title="Error Registration"
+              text={error}
+            />
+            )}
           </div>
         )}
       </Formik>

@@ -5,15 +5,15 @@ import {
 } from 'redux-saga/effects';
 
 import * as actionTypes from '../constants';
-import { signUpModal } from '../action';
-import signUpUser from '../../api/signUp';
+import { receivedAuth, failedAuth } from '../action';
+import api from '../../api/api';
 
-function* signUpSaga() {
+function* signUpSaga({ payload: value }) {
   try {
-    const { data: payload } = yield call(signUpUser);
-    yield put(signUpModal(payload));
+    const data = yield call(api.post, '/users', { user: value });
+    yield put(receivedAuth(data));
   } catch (err) {
-    console.log(err);
+    yield put(failedAuth(err.message));
   }
 }
 

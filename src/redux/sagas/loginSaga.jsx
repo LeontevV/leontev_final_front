@@ -5,17 +5,18 @@ import {
 } from 'redux-saga/effects';
 
 import * as actionTypes from '../constants';
-import { receivedAuth } from '../action';
+import { receivedAuth, failedAuth } from '../action';
 import api from '../../api/api';
 
 function* loginSaga({ payload: value }) {
   try {
-    console.log(value);
-    const data = yield call(api.post, '/users/sign_in', value);
-    console.log(data);
+    const data = yield call(api.post, '/users/sign_in', { user: value });
+    if (data.headers.authorization) {
+      localStorage.setItem('token', data.headers.authorization);
+    }
     yield put(receivedAuth(data));
   } catch (err) {
-    console.log(err);
+    yield put(failedAuth(err.message));
   }
 }
 

@@ -7,3 +7,4 @@ export const LOGIN_MODAL = 'LOGIN_MODAL';
 export const SIGN_UP_MODAL = 'SIGN_UP_MODAL';
 
 export const GET_RECEIVED_USER = 'GET_RECEIVED_USER';
+export const GET_USER_FAILED = 'GET_USER_FAILED';
