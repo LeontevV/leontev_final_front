@@ -11,6 +11,9 @@ import api from '../../api/api';
 function* signUpSaga({ payload: value }) {
   try {
     const data = yield call(api.post, '/users', { user: value });
+    if (data.headers.authorization) {
+      localStorage.setItem('token', data.headers.authorization);
+    }
     yield put(receivedAuth(data));
   } catch (err) {
     yield put(failedAuth(err.message));

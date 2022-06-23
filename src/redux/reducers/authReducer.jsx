@@ -4,6 +4,7 @@ import {
   SIGN_UP_MODAL,
   GET_RECEIVED_USER,
   GET_USER_FAILED,
+  USER_LOGOUT,
 } from '../constants';
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   modalIsOpen: false,
   user: {},
   error: null,
+  isUserLogin: Boolean(localStorage.getItem('token')),
 };
 
 export default function authReducer(state = initialState, action = {}) {
@@ -36,11 +38,17 @@ export default function authReducer(state = initialState, action = {}) {
         ...state,
         user: state.payload,
         modalIsOpen: false,
+        isUserLogin: true,
       };
     case GET_USER_FAILED:
       return {
         ...state,
         error: action.payload,
+      };
+    case USER_LOGOUT:
+      return {
+        ...state,
+        isUserLogin: false,
       };
     default: return state;
   }

@@ -31,3 +31,7 @@ export const failedAuth = (payload) => ({
   type: actionTypes.GET_USER_FAILED,
   payload,
 });
+export const logOut = (payload) => ({
+  type: actionTypes.USER_LOGOUT,
+  payload,
+});

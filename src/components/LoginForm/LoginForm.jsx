@@ -2,24 +2,19 @@
 import React, { memo } from 'react';
 import { Formik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
-import * as yup from 'yup';
 
 import Button from '@mui/material/Button';
 import './LoginForm.css';
 import { loginModal, signUpModal, toggleModal } from '../../redux/action';
 
 import Notification from '../Error/Error';
+import { validateRegistration, validateAuthorization } from '../Helpers/Validation';
 
 function LoginForm() {
   const dispatch = useDispatch();
   const modalType = useSelector((state) => state.auth.modalType);
   const error = useSelector((state) => state.auth.error);
-  const validationSchema = yup.object().shape({
-    name: yup.string().typeError('Must be string'),
-    email: yup.string().email('Enter valid email').required('Necessarily'),
-    password: yup.string().typeError('Must be string').required('Necessarily'),
-    confirmPassword: yup.string().oneOf([yup.ref('password')], 'Please repeat password'),
-  });
+
   const isLogin = modalType === 'login';
 
   const handleClose = () => {
@@ -39,7 +34,7 @@ function LoginForm() {
         }}
         validateOnBlur
         onSubmit={onSubmit}
-        validationSchema={validationSchema}
+        validationSchema={isLogin ? validateAuthorization : validateRegistration}
       >
         {({
           values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty,
