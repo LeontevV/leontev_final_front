@@ -10,13 +10,10 @@ import api from '../../api/api';
 
 function* logOutSaga() {
   try {
-    const data = yield call(api.delete, '/users/sign_out');
-    if (data.status === 200) {
-      localStorage.removeItem('token');
-    }
+    yield call(api.delete, '/users/sign_out');
   } catch (err) {
     yield put(failedAuth(err.message));
-  }
+  } finally { localStorage.removeItem('token'); }
 }
 
 export default function* watcherSaga() {

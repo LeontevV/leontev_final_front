@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 
 import Dialog from '@mui/material/Dialog';
@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import LoginForm from '../LoginForm/LoginForm';
 
-export default function modalWindow() {
+function modalWindow() {
   const modalIsOpen = useSelector((state) => state.auth.modalIsOpen);
   const modalType = useSelector((state) => state.auth.modalType);
 
@@ -29,3 +29,5 @@ export default function modalWindow() {
     </div>
   );
 }
+
+export default memo(modalWindow);

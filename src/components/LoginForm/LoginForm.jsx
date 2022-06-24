@@ -1,20 +1,26 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { memo } from 'react';
 import { Formik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '@mui/material/Button';
-import './LoginForm.css';
-import { loginModal, signUpModal, toggleModal } from '../../redux/action';
 
 import Notification from '../Error/Error';
+import { loginModal, signUpModal, toggleModal } from '../../redux/action';
 import { validateRegistration, validateAuthorization } from '../Helpers/Validation';
+
+import './LoginForm.css';
+
+const authInitialValues = {
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 function LoginForm() {
   const dispatch = useDispatch();
   const modalType = useSelector((state) => state.auth.modalType);
   const error = useSelector((state) => state.auth.error);
-
   const isLogin = modalType === 'login';
 
   const handleClose = () => {
@@ -26,25 +32,28 @@ function LoginForm() {
   return (
     <div className="auth">
       <Formik
-        initialValues={{
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-        }}
+        initialValues={authInitialValues}
         validateOnBlur
         onSubmit={onSubmit}
         validationSchema={isLogin ? validateAuthorization : validateRegistration}
       >
         {({
-          values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty,
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          isValid,
+          handleSubmit,
+          dirty,
         }) => (
           <div>
             {!isLogin && (
               <>
-                <label htmlFor="name">Name</label>
+                <span>Name</span>
                 <p>
                   <input
+                    id="name"
                     type="text"
                     name="name"
                     onChange={handleChange}
@@ -59,7 +68,7 @@ function LoginForm() {
                 ) }
               </>
             )}
-            <label htmlFor="name">Email</label>
+            <span>Email</span>
             <p>
               <input
                 type="text"
@@ -74,7 +83,7 @@ function LoginForm() {
               {errors.email}
             </div>
             ) }
-            <label htmlFor="password">Password</label>
+            <span>Password</span>
             <p>
               <input
                 type="text"
@@ -91,7 +100,7 @@ function LoginForm() {
             ) }
             {!isLogin && (
               <>
-                <label htmlFor="confirmPassword">Confirm Password</label>
+                <span>Confirm Password</span>
                 <p>
                   <input
                     type="text"
