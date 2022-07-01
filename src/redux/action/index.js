@@ -24,7 +24,7 @@ export const signUpModal = (payload) => ({
   payload,
 });
 export const receivedAuth = (payload) => ({
-  type: actionTypes.GET_RECEIVED_USER,
+  type: actionTypes.GET_RECEIVED_AUTH,
   payload,
 });
 export const failedAuth = (payload) => ({
@@ -33,5 +33,22 @@ export const failedAuth = (payload) => ({
 });
 export const logOut = (payload) => ({
   type: actionTypes.USER_LOGOUT,
+  payload,
+});
+
+export const getUserById = (payload) => ({
+  type: actionTypes.GET_USER_REQUESTED_BY_ID,
+  payload,
+});
+export const getUserByToken = (payload) => ({
+  type: actionTypes.GET_USER_REQUEST_BY_TOKEN,
+  payload,
+});
+export const receivedUser = (payload) => ({
+  type: actionTypes.GET_RECEIVED_USER,
+  payload,
+});
+export const failedUser = (payload) => ({
+  type: actionTypes.GET_FAILED_USER,
   payload,
 });

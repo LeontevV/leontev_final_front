@@ -27,8 +27,13 @@ function LoginForm() {
     dispatch(toggleModal({ status: false }));
   };
 
-  const onSubmit = (value) => (isLogin
-    ? dispatch(loginModal(value)) : dispatch(signUpModal(value)));
+  const onSubmit = (value) => {
+    const currentAction = isLogin
+      ? loginModal(value)
+      : signUpModal(value);
+
+    dispatch(currentAction);
+  };
   return (
     <div className="auth">
       <Formik

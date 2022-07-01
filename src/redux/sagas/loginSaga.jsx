@@ -10,11 +10,12 @@ import api from '../../api/api';
 
 function* loginSaga({ payload: value }) {
   try {
-    const data = yield call(api.post, '/users/sign_in', { user: value });
-    if (data.headers.authorization) {
-      localStorage.setItem('token', data.headers.authorization);
+    const { data, headers } = yield call(api.post, '/users/sign_in', { user: value });
+
+    if (headers.authorization) {
+      localStorage.setItem('token', headers.authorization);
     }
-    yield put(receivedAuth(data));
+    yield put(receivedAuth(data.message));
   } catch (err) {
     yield put(failedAuth(err.message));
   }

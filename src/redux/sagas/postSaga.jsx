@@ -10,8 +10,8 @@ import getPostsRequest from '../../api/getPostsRequest';
 
 function* getPostSaga() {
   try {
-    const { data: payload } = yield call(getPostsRequest);
-    yield put(receivedPosts(payload));
+    const { data } = yield call(getPostsRequest);
+    yield put(receivedPosts(data));
   } catch (err) {
     yield put(failedPosts(err.message));
   }

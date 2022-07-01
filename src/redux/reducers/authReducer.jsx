@@ -2,7 +2,7 @@ import {
   TOGGLE_MODAL,
   LOGIN_MODAL,
   SIGN_UP_MODAL,
-  GET_RECEIVED_USER,
+  GET_RECEIVED_AUTH,
   GET_USER_FAILED,
   USER_LOGOUT,
 } from '../constants';
@@ -27,18 +27,21 @@ export default function authReducer(state = initialState, action = {}) {
       return {
         ...state,
         modalType: 'login',
+        error: null,
       };
     case SIGN_UP_MODAL:
       return {
         ...state,
         modalType: 'signUp',
+        error: null,
       };
-    case GET_RECEIVED_USER:
+    case GET_RECEIVED_AUTH:
       return {
         ...state,
-        user: state.payload,
+        user: action.payload,
         modalIsOpen: false,
         isUserLogin: true,
+        error: null,
       };
     case GET_USER_FAILED:
       return {

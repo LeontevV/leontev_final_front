@@ -3,6 +3,8 @@ import postSaga from './postSaga';
 import signUpSaga from './signUpSaga';
 import loginSaga from './loginSaga';
 import logOutSaga from './logOutSaga';
+import tokenUserSaga from './tokenUserSaga';
+import idUserSaga from './idUserSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +12,7 @@ export default function* rootSaga() {
     signUpSaga(),
     loginSaga(),
     logOutSaga(),
+    tokenUserSaga(),
+    idUserSaga(),
   ]);
 }
