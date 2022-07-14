@@ -10,9 +10,9 @@ import api from '../../api/api';
 
 function* signUpSaga({ payload: value }) {
   try {
-    const data = yield call(api.post, '/users', { user: value });
-    yield put(loginModal(value));
+    const { data } = yield call(api.post, '/users', { user: value });
     yield put(receivedAuth(data));
+    yield put(loginModal(value));
   } catch (err) {
     yield put(failedAuth(err.message));
   }

@@ -14,7 +14,7 @@ function Posts() {
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch]);
+  }, []);
 
   const posts = useSelector((state) => state.posts.posts);
   const error = useSelector((state) => state.posts.error);
@@ -50,6 +50,7 @@ function Posts() {
             title={post.title}
             description={post.description}
             tag={post.tag}
+            user={post.user}
           />
         )))}
     </div>

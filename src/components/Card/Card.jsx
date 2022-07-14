@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { string } from 'prop-types';
+import { shape, string } from 'prop-types';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,9 +8,21 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+import { useNavigate } from 'react-router-dom';
 import postImage from '../../assets/images.png';
 
-function MediaCard({ title, description, tag }) {
+function MediaCard({
+  title,
+  description,
+  tag,
+  user,
+}) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/users/${user.id}`);
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -30,8 +42,7 @@ function MediaCard({ title, description, tag }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button onClick={handleClick} size="small">{ user.name }</Button>
       </CardActions>
     </Card>
   );
@@ -40,11 +51,13 @@ MediaCard.propTypes = {
   title: string,
   description: string,
   tag: string,
+  user: shape({}),
 };
 MediaCard.defaultProps = {
   title: '',
   tag: '',
   description: '',
+  user: {},
 };
 
 export default memo(MediaCard);
